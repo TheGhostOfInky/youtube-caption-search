@@ -1,0 +1,3 @@
+#files to ignore
+svelte.config.js -linguist-detectable
+vite.config.js -linguist-detectable

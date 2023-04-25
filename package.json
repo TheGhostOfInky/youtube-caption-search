@@ -1,14 +1,14 @@
 {
     "name": "youtube-caption-search",
     "private": true,
-    "version": "0.1.0",
+    "version": "0.1.1",
     "type": "module",
     "scripts": {
         "dev": "vite",
         "build": "vite build",
         "preview": "vite preview",
         "check": "svelte-check --tsconfig ./tsconfig.json",
-        "deploy": "npx gh-pages -d dist"
+        "gh-deploy": "npx gh-pages -d dist"
     },
     "devDependencies": {
         "@sveltejs/vite-plugin-svelte": "^2.0.3",
