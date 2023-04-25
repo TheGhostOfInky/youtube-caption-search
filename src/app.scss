@@ -1,0 +1,109 @@
+@mixin light-mode {
+    --appbg: #fff;
+    --elmbg: #ddd;
+    --elmfg: #ccc;
+    --txtcontrast: #000;
+    --txt: #222;
+    --txtfaded: #777;
+}
+
+@mixin dark-mode {
+    --appbg: #000;
+    --elmbg: #222;
+    --elmfg: #444;
+    --txtcontrast: #fff;
+    --txt: #eee;
+    --txtfaded: #777;
+}
+
+:root,
+:root[theme-override="light"] {
+    @include light-mode;
+}
+
+:root[theme-override="dark"] {
+    @include dark-mode;
+}
+
+@media (prefers-color-scheme: dark) {
+    :root {
+        @include dark-mode;
+    }
+}
+
+
+:root {
+    font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+    line-height: 1.5;
+    font-weight: 400;
+
+    color-scheme: light dark;
+    color: var(--txtcontrast);
+    background-color: var(--appbg);
+
+    font-synthesis: none;
+    text-rendering: optimizeLegibility;
+}
+
+* {
+    transition: 0.3s ease-in-out;
+}
+
+body {
+    margin: 0;
+    display: flex;
+    place-items: start center;
+    min-width: 320px;
+    min-height: 100vh;
+}
+
+#app,
+main {
+    width: 98%;
+    margin: 0 auto;
+    text-align: center;
+}
+
+main {
+    margin-top: 2em;
+}
+
+h1 {
+    font-size: 3.2em;
+    line-height: 1.1;
+}
+
+button {
+    border-radius: 8px;
+    border: 1px solid transparent;
+    padding: 0.6em 1.2em;
+    font-size: 1em;
+    font-weight: 500;
+    font-family: inherit;
+    background-color: var(--elmfg);
+    color: var(--txt);
+    cursor: pointer;
+    transition: border-color 0.25s;
+
+    &:hover {
+        border-color: #646cff;
+    }
+
+    &:focus,
+    &:focus-visible {
+        outline: 4px auto -webkit-focus-ring-color;
+    }
+}
+
+input,
+select,
+option {
+    background-color: var(--elmfg);
+    color: var(--txt);
+}
+
+@media screen and (max-width: 800px) {
+    h1 {
+        font-size: 1.8em;
+    }
+}

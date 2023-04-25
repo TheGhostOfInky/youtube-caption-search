@@ -1,0 +1,20 @@
+export default {
+    "Arabic": "ar",
+    "Bengali": "bn",
+    "Chinese": "zh",
+    "English": "en",
+    "French": "fr",
+    "German": "de",
+    "Italian": "it",
+    "Indonesian": "in",
+    "Japanese": "ja",
+    "Korean": "ko",
+    "Polish": "pl",
+    "Portuguese": "pt",
+    "Russian": "ru",
+    "Spanish": "es",
+    "Thai": "th",
+    "Turkish": "tr",
+    "Vietnamese": "vi",
+    "Urdu": "ur"
+} as Record<string, string>;
