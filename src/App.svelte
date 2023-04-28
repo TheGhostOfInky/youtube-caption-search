@@ -3,12 +3,14 @@
     import { getCaptionMatches } from "./lib/piped-wrapper";
     import { Jellyfish } from "svelte-loading-spinners";
     import { scale } from "svelte/transition";
+    import { onMount } from "svelte";
 
     import GithubCorner from "./lib/GithubCorner.svelte";
     import Matches from "./lib/Matches.svelte";
     import SearchBox from "./lib/SearchBox.svelte";
     import ThemeToggle from "./lib/ThemeToggle.svelte";
 
+    let dark: boolean;
     let matches = [] as SubMatch[];
     let loading: boolean = false;
 
@@ -22,12 +24,29 @@
         }
         loading = false;
     }
+
+    onMount(() => {
+        const metaTags = document.getElementsByTagName("meta");
+        const themeColor = [...metaTags].filter(
+            (x) => x.name === "theme-color" && x.className === ""
+        );
+        if (themeColor.length === 0) return;
+        themeColor[0].remove();
+    });
 </script>
+
+<svelte:head>
+    <meta
+        name="theme-color"
+        content="#{dark ? '000' : 'FFF'}"
+        data-react-helmet="true"
+    />
+</svelte:head>
 
 <main>
     <GithubCorner />
     <h1>YouTube Caption Search</h1>
-    <ThemeToggle />
+    <ThemeToggle bind:dark />
     <SearchBox on:search={findCaptions} bind:loading />
     {#if loading}
         <div in:scale out:scale class="animation-holder">

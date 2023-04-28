@@ -114,14 +114,11 @@ export async function* getCaptionMatches(
         ? search : search.toLocaleLowerCase(locale);
 
     const page = getChannelPage(id);
-    let result: IteratorResult<ChannelPage, void>;
     let done = 0;
 
-    mainLoop: while (!(result = await page.next()).done) {
+    mainLoop: for await (const result of page) {
 
-        if (!result.value) break;
-
-        const videos = result.value.relatedStreams.map(
+        const videos = result.relatedStreams.map(
             x => x.url.replace("/watch?v=", "")
         );
 

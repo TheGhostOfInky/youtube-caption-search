@@ -4,7 +4,7 @@
     import sunSvg from "../assets/sun.svg";
     import { onMount } from "svelte";
     type Theme = "dark" | "light";
-    let dark: boolean;
+    export let dark: boolean;
 
     const prefersDark = window.matchMedia("(prefers-color-scheme: dark)");
 
