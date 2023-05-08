@@ -14,14 +14,24 @@
     let matches = [] as SubMatch[];
     let loading: boolean = false;
 
-    async function findCaptions(ev: CustomEvent<CMParams>) {
-        matches = [];
-        const captionMatches = getCaptionMatches(ev.detail);
-
-        loading = true;
+    async function findMatches(
+        captionMatches: AsyncGenerator<SubMatch[], void, void>
+    ) {
         for await (const match of captionMatches) {
             matches = [...matches, ...match];
         }
+    }
+
+    async function findCaptions(ev: CustomEvent<CMParams>) {
+        matches = [];
+        const captionMatches = getCaptionMatches(ev.detail);
+        loading = true;
+        await findMatches(captionMatches).catch(
+            (err) => (
+                console.error(err),
+                alert(err.toString() + "\nDid you enter a valid channel ID?")
+            )
+        );
         loading = false;
     }
 

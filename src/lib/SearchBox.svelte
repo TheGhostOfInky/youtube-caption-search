@@ -30,7 +30,7 @@
     let abortController: AbortController;
 
     function dispatchSearch() {
-        const flags = caseSensitive ? "gm" : "gmi";
+        const flags = caseSensitive ? "gmu" : "gmiu";
         const search = regex ? new RegExp(rawSearch, flags) : rawSearch;
 
         const roundedLimit = Math.round(rawLimit);
