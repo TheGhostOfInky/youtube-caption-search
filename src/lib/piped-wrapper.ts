@@ -18,17 +18,17 @@ async function getJson<T>(url: string): Promise<T> {
 
 //Direct API wrappers
 async function* getChannelPage(id: string): AsyncGenerator<ChannelPage, void, void> {
-    let data = await getJson<ChannelPage>(`https://pipedapi.kavin.rocks/channel/${id}`);
+    let data = await getJson<ChannelPage>(`https://piped.privacy.com.de/channel/${id}`);
     yield data;
     while (data.nextpage) {
         const next = new URLSearchParams([["nextpage", data.nextpage]]);
-        const url = `https://pipedapi.kavin.rocks/nextpage/channel/${id}?${next}`;
+        const url = `https://piped.privacy.com.de/nextpage/channel/${id}?${next}`;
         yield data = await getJson<ChannelPage>(url);
     }
 }
 
 export async function getVideo(id: string): Promise<Stream> {
-    return getJson<Stream>(`https://pipedapi.kavin.rocks/streams/${id}`);
+    return getJson<Stream>(`https://piped.privacy.com.de/streams/${id}`);
 }
 
 async function getSubtitles(sub: Subtitle): Promise<XMLDocument> {
